@@ -8,6 +8,7 @@ import {
   AuthChangePassword,
   AuthRefreshToken,
 } from "../auth";
+import { ItemCreate } from "endpoints/itemCreate";
 
 const { preflight } = cors();
 
@@ -44,6 +45,10 @@ router.all("/api/*", authenticateUser);
 
 router.post("/api/auth/logout", AuthLogout);
 router.post("/api/auth/changepassword", AuthChangePassword);
+
+/* ### CRUD ### */
+// Create or Update a whole collection
+router.post("/api/v1/createItem", ItemCreate);
 
 // 404 for everything else
 router.all("*", () =>

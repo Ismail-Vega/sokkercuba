@@ -15,6 +15,7 @@
 	"keywords": [],
 	"dependencies": {
 		"@cloudflare/itty-router-openapi": "^1.0.1",
+		"flatted": "^3.3.1",
 		"itty-router": "^5.0.17",
 		"workers-qb": "^1.2.3"
 	},

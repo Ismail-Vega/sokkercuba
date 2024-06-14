@@ -13,7 +13,6 @@ CREATE TABLE
     items (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
-        key_name VARCHAR(255),
         value TEXT,
         FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
     );
