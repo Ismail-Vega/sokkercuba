@@ -1,32 +1,27 @@
 {
-  "name": "sokkercuba",
-  "version": "1.0.0",
-  "description": "The web app for the old school Cuban community of sokker.org!",
-  "main": "index.js",
-  "scripts": {
-    "serve": "set NODE_ENV=dev && nodemon --watch . server.js",
-    "start": "set NODE_ENV=production && node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Ismail Vega",
-  "license": "MIT",
-  "keywords": [],
-  "dependencies": {
-    "aws-sdk": "^2.1351.0",
-    "compression": "^1.7.4",
-    "express": "^4.17.1",
-    "express-session": "^1.17.3",
-    "flatted": "^3.2.9",
-    "helmet": "^6.0.1",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.37.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.7.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "nodemon": "^2.0.12",
-    "wrangler": "^3.60.2"
-  }
+	"name": "sokkercuba",
+	"version": "1.0.0",
+	"description": "The web app for the old school Cuban community of sokker.org!",
+	"main": "index.js",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"cf-typegen": "wrangler types"
+	},
+	"author": "Ismail Vega",
+	"license": "MIT",
+	"keywords": [],
+	"dependencies": {
+		"@cloudflare/itty-router-openapi": "^1.0.1",
+		"itty-router": "^5.0.17",
+		"workers-qb": "^1.2.3"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240605.0",
+		"@types/node": "^20.5.7",
+		"@types/service-worker-mock": "^2.0.1",
+		"wrangler": "^3.60.3"
+	}
 }
