@@ -38,6 +38,7 @@ export class AuthRegister extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: String,
+          message: String,
         },
       },
     },
@@ -64,12 +65,11 @@ export class AuthRegister extends OpenAPIRoute {
         })
         .execute();
     } catch (e) {
-      console.log("error: ", e);
-
       return new Response(
         JSON.stringify({
           success: false,
           errors: "User with that email already exists",
+          message: e?.message || e,
         }),
         {
           headers: {

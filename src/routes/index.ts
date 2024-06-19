@@ -8,7 +8,16 @@ import {
   AuthChangePassword,
   AuthRefreshToken,
 } from "../auth";
-import { ItemCreate } from "endpoints/itemCreate";
+import { GetTeamData } from "endpoints/teams/getTeam";
+import { PostTeamData } from "endpoints/teams/createTeam";
+import { DeleteTeamData } from "endpoints/teams/deleteTeam";
+import { UpdateTeamData } from "endpoints/teams/updateTeam";
+import { PostSquadData } from "endpoints/teams/squad/createSquad";
+import { GetSquadData } from "endpoints/teams/squad/getSquad";
+import { GetTeamReports } from "endpoints/teams/reports/getTeamReports";
+
+import { GetPlayerReports } from "endpoints/players/getPlayerReports";
+import { PostPlayerReports } from "endpoints/players/createPlayerReports";
 
 const { preflight } = cors();
 
@@ -46,9 +55,22 @@ router.all("/api/*", authenticateUser);
 router.post("/api/auth/logout", AuthLogout);
 router.post("/api/auth/changepassword", AuthChangePassword);
 
-/* ### CRUD ### */
-// Create or Update a whole collection
-router.post("/api/v1/createItem", ItemCreate);
+/* ## TEAMS ## */
+router.post("/api/v1/teams", PostTeamData);
+router.get("/api/v1/teams/:id", GetTeamData);
+router.delete("/api/v1/teams/:id", DeleteTeamData);
+router.patch("/api/v1/teams/:id", UpdateTeamData);
+
+/* ### TEAMS/REPORTS ### */
+router.get("/api/v1/teams/:id/reports/", GetTeamReports);
+
+/* ### TEAMS/SQUAD ### */
+router.post("/api/v1/teams/:id/squad/", PostSquadData);
+router.get("/api/v1/teams/:id/squad/", GetSquadData);
+
+/* ## PLAYERS ## */
+router.post("/api/v1/players/:id/reports", PostPlayerReports);
+router.get("/api/v1/players/:id/reports", GetPlayerReports);
 
 // 404 for everything else
 router.all("*", () =>
