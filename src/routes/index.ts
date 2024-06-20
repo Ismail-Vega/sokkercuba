@@ -19,7 +19,12 @@ import { GetTeamReports } from "endpoints/teams/reports/getTeamReports";
 import { GetPlayerReports } from "endpoints/players/getPlayerReports";
 import { PostPlayerReports } from "endpoints/players/createPlayerReports";
 
-const { preflight } = cors();
+const { preflight } = cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+  allowMethods: "*",
+  maxAge: 84600,
+});
 
 export const router = OpenAPIRouter({
   schema: {
@@ -37,7 +42,7 @@ export const router = OpenAPIRouter({
 });
 
 // embed preflight upstream to handle all OPTIONS requests
-router.all("*", preflight);
+router.options("*", preflight);
 
 router.registry.registerComponent("securitySchemes", "bearerAuth", {
   type: "http",

@@ -19,6 +19,7 @@ export class PostTeamData extends OpenAPIRoute {
         description: "Returns success",
         schema: {
           success: Boolean,
+          schema: { success: Boolean },
         },
       },
       "400": {
@@ -26,7 +27,6 @@ export class PostTeamData extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -46,7 +46,7 @@ export class PostTeamData extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: `Required team data missing! => ${
+          error: `Required team data missing! => ${
             !teamId ? "team Id." : "body data."
           }`,
         }),
@@ -71,7 +71,16 @@ export class PostTeamData extends OpenAPIRoute {
         })
         .execute();
 
-      return new Response(JSON.stringify({ success: true, teamId }), {
+      await context.qb
+        .update({
+          tableName: "users",
+          data: {
+            team_id: teamId,
+          },
+        })
+        .execute();
+
+      return new Response(JSON.stringify({ success: true }), {
         headers: {
           "content-type": "application/json;charset=UTF-8",
         },
@@ -81,8 +90,9 @@ export class PostTeamData extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          message: e.message || e,
-          error: "An error occurred when trying to create team data",
+          error: `An error occurred when trying to create team data. ${
+            e?.message || e ? "Info: " + (e?.message || e) : ""
+          }`,
         }),
         {
           status: 500,

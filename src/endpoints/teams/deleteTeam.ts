@@ -26,7 +26,6 @@ export class DeleteTeamData extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -39,7 +38,7 @@ export class DeleteTeamData extends OpenAPIRoute {
     if (!teamId) {
       return new Response(
         JSON.stringify({
-          message: "Required parameter teamId missing!",
+          error: "Required parameter teamId missing!",
         }),
         { status: 400 }
       );
@@ -53,13 +52,23 @@ export class DeleteTeamData extends OpenAPIRoute {
         })
         .execute();
 
+      await context.qb
+        .update({
+          tableName: "users",
+          data: {
+            team_id: null,
+          },
+        })
+        .execute();
+
       return { success: true };
     } catch (e) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: "An error occurred when trying to delete team data",
-          message: e?.message || e,
+          error: `An error occurred when trying to delete team data. ${
+            e?.message || e ? "Info: " + (e?.message || e) : ""
+          }`,
         }),
         {
           headers: {

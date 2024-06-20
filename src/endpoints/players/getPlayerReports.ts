@@ -24,7 +24,6 @@ export class GetPlayerReports extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -42,7 +41,7 @@ export class GetPlayerReports extends OpenAPIRoute {
     if (!playerId) {
       return new Response(
         JSON.stringify({
-          message: "Required parameter playerId missing!",
+          error: "Required parameter playerId missing!",
         }),
         { status: 400 }
       );
@@ -61,7 +60,6 @@ export class GetPlayerReports extends OpenAPIRoute {
         JSON.stringify({
           success: false,
           error: "Training data not found",
-          message: trainingMetadata?.results?.toString(),
         }),
         {
           status: 404,

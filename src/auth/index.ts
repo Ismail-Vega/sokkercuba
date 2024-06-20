@@ -16,7 +16,6 @@ export class AuthRegister extends OpenAPIRoute {
     tags: ["Auth"],
     summary: "Register user",
     requestBody: {
-      name: String,
       email: new Email(),
       password: z.string().min(8).max(24),
     },
@@ -28,7 +27,6 @@ export class AuthRegister extends OpenAPIRoute {
           result: {
             user: {
               email: String,
-              name: String,
             },
           },
         },
@@ -38,7 +36,6 @@ export class AuthRegister extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: String,
-          message: String,
         },
       },
     },
@@ -58,7 +55,6 @@ export class AuthRegister extends OpenAPIRoute {
           tableName: "users",
           data: {
             email: data.body.email,
-            name: data.body.name,
             password: await hashPassword(data.body.password, env.SALT_TOKEN),
           },
           returning: "*",
@@ -68,8 +64,9 @@ export class AuthRegister extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "User with that email already exists",
-          message: e?.message || e,
+          error: `User with that email already exists. ${
+            e?.message || e ? "Info: " + (e?.message || e) : ""
+          }`,
         }),
         {
           headers: {
@@ -85,7 +82,6 @@ export class AuthRegister extends OpenAPIRoute {
       result: {
         user: {
           email: user.results.email,
-          name: user.results.name,
         },
       },
     };
@@ -105,10 +101,9 @@ export class AuthLogin extends OpenAPIRoute {
         description: "Successful response",
         schema: {
           success: Boolean,
-          result: {
-            accessToken: String,
-            expiresAt: String,
-          },
+          teamId: Number,
+          accessToken: String,
+          expiresAt: String,
         },
       },
       "400": {
@@ -145,7 +140,7 @@ export class AuthLogin extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "User or password was incorrect. Please try again.",
+          error: "User or password was incorrect. Please try again.",
         }),
         {
           headers: {
@@ -189,10 +184,9 @@ export class AuthLogin extends OpenAPIRoute {
     return new Response(
       JSON.stringify({
         success: true,
-        result: {
-          accessToken,
-          expiresAt: accessTokenExpiration.toISOString(),
-        },
+        accessToken,
+        teamId: user.results.team_id,
+        expiresAt: accessTokenExpiration.toISOString(),
       }),
       {
         headers: {
@@ -250,7 +244,7 @@ export class AuthRefreshToken extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "No valid refresh token provided",
+          error: "No valid refresh token provided",
         }),
         {
           headers: {
@@ -276,7 +270,7 @@ export class AuthRefreshToken extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "Invalid or expired refresh token",
+          error: "Invalid or expired refresh token",
         }),
         {
           headers: {
@@ -356,7 +350,7 @@ export class AuthLogout extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "User not authenticated",
+          error: "User not authenticated",
         }),
         {
           headers: {
@@ -441,7 +435,7 @@ export class AuthChangePassword extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "No authentication token provided",
+          error: "No authentication token provided",
         }),
         {
           headers: {
@@ -467,7 +461,7 @@ export class AuthChangePassword extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "Invalid or expired session token",
+          error: "Invalid or expired session token",
         }),
         {
           headers: {
@@ -496,7 +490,7 @@ export class AuthChangePassword extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: "Incorrect old password",
+          error: "Incorrect old password",
         }),
         {
           headers: {
@@ -545,7 +539,7 @@ export async function authenticateUser(
     return new Response(
       JSON.stringify({
         success: false,
-        errors: "Authentication error: No token provided",
+        error: "Authentication error: No token provided",
       }),
       {
         headers: {
@@ -571,7 +565,7 @@ export async function authenticateUser(
     return new Response(
       JSON.stringify({
         success: false,
-        errors: "Authentication error: Invalid or expired token",
+        error: "Authentication error: Invalid or expired token",
       }),
       {
         headers: {

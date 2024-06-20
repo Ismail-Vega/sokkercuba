@@ -29,7 +29,6 @@ export class PostPlayerReports extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -96,8 +95,9 @@ export class PostPlayerReports extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          message: e.message || e,
-          error: "An error occurred when trying to create training report",
+          error: `An error occurred when trying to create training report. ${
+            e?.message || e ? "Info: " + (e?.message || e) : ""
+          }`,
         }),
         {
           status: 500,

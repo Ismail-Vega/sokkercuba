@@ -24,7 +24,6 @@ export class GetSquadData extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -42,7 +41,7 @@ export class GetSquadData extends OpenAPIRoute {
     if (!teamId) {
       return new Response(
         JSON.stringify({
-          message: "Required parameter teamId missing!",
+          error: "Required parameter teamId missing!",
         }),
         { status: 400 }
       );
@@ -61,7 +60,6 @@ export class GetSquadData extends OpenAPIRoute {
         JSON.stringify({
           success: false,
           error: "Team not found",
-          message: squadMetadata?.results?.toString(),
         }),
         {
           status: 404,

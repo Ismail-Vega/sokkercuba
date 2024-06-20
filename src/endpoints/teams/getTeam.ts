@@ -17,14 +17,13 @@ export class GetTeamData extends OpenAPIRoute {
     responses: {
       "200": {
         description: "Returns team",
-        schema: z.record(z.string(), z.any()),
+        schema: { success: Boolean, data: z.record(z.string(), z.any()) },
       },
       "404": {
         description: "Returns failed",
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -42,7 +41,8 @@ export class GetTeamData extends OpenAPIRoute {
     if (!teamId) {
       return new Response(
         JSON.stringify({
-          message: "Required parameter teamId missing!",
+          success: false,
+          error: "Required parameter teamId missing!",
         }),
         { status: 400 }
       );
@@ -61,7 +61,6 @@ export class GetTeamData extends OpenAPIRoute {
         JSON.stringify({
           success: false,
           error: "Team not found",
-          message: teamMetadata?.results?.toString(),
         }),
         {
           status: 404,
@@ -69,9 +68,15 @@ export class GetTeamData extends OpenAPIRoute {
       );
     }
 
-    return new Response(teamMetadata.results.metadata as string, {
-      status: 200,
-      headers: { "content-type": "application/json;charset=UTF-8" },
-    });
+    return new Response(
+      JSON.stringify({
+        success: true,
+        data: JSON.parse(teamMetadata.results.metadata as string),
+      }),
+      {
+        status: 200,
+        headers: { "content-type": "application/json;charset=UTF-8" },
+      }
+    );
   }
 }

@@ -29,7 +29,6 @@ export class PostSquadData extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -95,8 +94,9 @@ export class PostSquadData extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          message: e.message || e,
-          error: "An error occurred when trying to create Squad data",
+          error: `An error occurred when trying to create Squad data. ${
+            e?.message || e ? "Info: " + (e?.message || e) : ""
+          }`,
         }),
         {
           status: 500,

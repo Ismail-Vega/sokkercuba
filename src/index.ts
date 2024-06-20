@@ -4,7 +4,12 @@ import { Env } from "./types/env";
 import { cors } from "itty-router";
 import { cleanupExpiredSessions } from "./utils/cleanupExpiredSessions";
 
-const { corsify } = cors();
+const { corsify } = cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+  allowMethods: "*",
+  maxAge: 84600,
+});
 
 export default {
   fetch: async (request: Request, env: Env, ctx: ExecutionContext) => {
@@ -16,7 +21,7 @@ export default {
         executionContext: ctx,
         qb: qb,
       })
-      .then(corsify);
+      .then((r) => corsify(r, request)); // <-- add corsify at the end
   },
   scheduled: async (event: ScheduledEvent, env: Env, ctx: ExecutionContext) => {
     const qb = new D1QB(env.DB);

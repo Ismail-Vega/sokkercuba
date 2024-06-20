@@ -29,7 +29,6 @@ export class UpdateTeamData extends OpenAPIRoute {
         schema: {
           success: Boolean,
           error: z.string(),
-          message: z.string(),
         },
       },
     },
@@ -86,8 +85,9 @@ export class UpdateTeamData extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          message: e.message || e,
-          error: "An error occurred when trying to update team data",
+          error: `An error occurred when trying to update team data. ${
+            e?.message || e ? "Info: " + (e?.message || e) : ""
+          }`,
         }),
         {
           status: 500,
