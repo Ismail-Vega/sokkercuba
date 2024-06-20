@@ -1,0 +1,155 @@
+{
+  "_PageTabs-27593840.js": {
+    "file": "assets/PageTabs-27593840.js",
+    "imports": [
+      "_vendor-edc92a48.js"
+    ]
+  },
+  "_ScrollToTopOnMount-61457ea0.js": {
+    "file": "assets/ScrollToTopOnMount-61457ea0.js",
+    "imports": [
+      "_vendor-edc92a48.js"
+    ]
+  },
+  "_vendor-edc92a48.js": {
+    "file": "assets/vendor-edc92a48.js"
+  },
+  "index.html": {
+    "assets": [
+      "assets/team_emblem-967891bd.webp"
+    ],
+    "dynamicImports": [
+      "src/components/SignIn/index.ts",
+      "src/components/SignUp/index.ts",
+      "src/pages/team/TeamPage.tsx",
+      "src/pages/about/AboutPage.tsx",
+      "src/pages/update/UpdatePage.tsx",
+      "src/pages/contact/ContactPage.tsx",
+      "src/pages/404/NotFoundPage.tsx",
+      "src/pages/addon/AddonPage.tsx",
+      "src/pages/addon/AddonPrivacy.tsx",
+      "src/pages/xtreme/XtremePage.tsx",
+      "src/pages/training/TrainingPage.tsx"
+    ],
+    "file": "assets/index-83e89ab7.js",
+    "imports": [
+      "_vendor-edc92a48.js"
+    ],
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "src/components/SignIn/index.ts": {
+    "file": "assets/index-a36f1b54.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/components/SignIn/index.ts"
+  },
+  "src/components/SignUp/index.ts": {
+    "file": "assets/index-2f1c1eba.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/components/SignUp/index.ts"
+  },
+  "src/images/team_emblem.webp": {
+    "file": "assets/team_emblem-967891bd.webp",
+    "src": "src/images/team_emblem.webp"
+  },
+  "src/pages/404/NotFoundPage.tsx": {
+    "file": "assets/NotFoundPage-f6d84db2.js",
+    "imports": [
+      "_vendor-edc92a48.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/404/NotFoundPage.tsx"
+  },
+  "src/pages/about/AboutPage.tsx": {
+    "file": "assets/AboutPage-199409d3.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html",
+      "_ScrollToTopOnMount-61457ea0.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/about/AboutPage.tsx"
+  },
+  "src/pages/addon/AddonPage.tsx": {
+    "file": "assets/AddonPage-6e3034ff.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html",
+      "_ScrollToTopOnMount-61457ea0.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/addon/AddonPage.tsx"
+  },
+  "src/pages/addon/AddonPrivacy.tsx": {
+    "file": "assets/AddonPrivacy-d160cf21.js",
+    "imports": [
+      "_vendor-edc92a48.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/addon/AddonPrivacy.tsx"
+  },
+  "src/pages/addon/chrome_icon.svg": {
+    "file": "assets/chrome_icon-c24bb399.svg",
+    "src": "src/pages/addon/chrome_icon.svg"
+  },
+  "src/pages/addon/firefox-browser-icon.svg": {
+    "file": "assets/firefox-browser-icon-0b827c10.svg",
+    "src": "src/pages/addon/firefox-browser-icon.svg"
+  },
+  "src/pages/contact/ContactPage.tsx": {
+    "file": "assets/ContactPage-dfa7ec36.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html",
+      "_ScrollToTopOnMount-61457ea0.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/contact/ContactPage.tsx"
+  },
+  "src/pages/team/TeamPage.tsx": {
+    "file": "assets/TeamPage-9f0a28c5.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html",
+      "_PageTabs-27593840.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/team/TeamPage.tsx"
+  },
+  "src/pages/training/TrainingPage.tsx": {
+    "file": "assets/TrainingPage-e01f4c37.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "_PageTabs-27593840.js",
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/training/TrainingPage.tsx"
+  },
+  "src/pages/update/UpdatePage.tsx": {
+    "file": "assets/UpdatePage-5fe3a7d6.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/update/UpdatePage.tsx"
+  },
+  "src/pages/xtreme/XtremePage.tsx": {
+    "file": "assets/XtremePage-c844ce5c.js",
+    "imports": [
+      "_vendor-edc92a48.js",
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/xtreme/XtremePage.tsx"
+  }
+}

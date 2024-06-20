@@ -1,0 +1,73 @@
+{
+  "$ref": "#/definitions/Juniors",
+  "definitions": {
+    "Juniors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "juniors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Junior"
+          }
+        }
+      },
+      "required": ["juniors"],
+      "title": "Juniors"
+    },
+    "Junior": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "teamId": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "fullName": {
+          "$ref": "#/definitions/FullName"
+        },
+        "skill": {
+          "type": "integer"
+        },
+        "age": {
+          "type": "integer"
+        },
+        "weeksLeft": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "age",
+        "fullName",
+        "id",
+        "name",
+        "skill",
+        "teamId",
+        "weeksLeft"
+      ],
+      "title": "Junior"
+    },
+    "FullName": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "full": {
+          "type": "string"
+        }
+      },
+      "required": ["full", "name", "surname"],
+      "title": "FullName"
+    }
+  }
+}

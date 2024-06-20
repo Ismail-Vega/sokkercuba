@@ -1,0 +1,108 @@
+{
+  "$ref": "#/definitions/TSummary",
+  "definitions": {
+    "TSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "weeks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Week"
+          }
+        }
+      },
+      "required": ["weeks"],
+      "title": "TSummary"
+    },
+    "Week": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "gameDay": {
+          "$ref": "#/definitions/GameDay"
+        },
+        "week": {
+          "type": "integer"
+        },
+        "stats": {
+          "$ref": "#/definitions/Stats"
+        },
+        "juniors": {
+          "$ref": "#/definitions/Juniors"
+        }
+      },
+      "required": ["gameDay", "juniors", "stats", "week"],
+      "title": "Week"
+    },
+    "GameDay": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "season": {
+          "type": "integer"
+        },
+        "week": {
+          "type": "integer"
+        },
+        "seasonWeek": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "integer"
+        },
+        "date": {
+          "$ref": "#/definitions/Date"
+        }
+      },
+      "required": ["date", "day", "season", "seasonWeek", "week"],
+      "title": "GameDay"
+    },
+    "Date": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date"
+        },
+        "timestamp": {
+          "type": "integer"
+        }
+      },
+      "required": ["timestamp", "value"],
+      "title": "Date"
+    },
+    "Juniors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "number": {
+          "type": "integer"
+        },
+        "skillsUp": {
+          "type": "integer"
+        }
+      },
+      "required": ["number", "skillsUp"],
+      "title": "Juniors"
+    },
+    "Stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "general": {
+          "type": "integer"
+        },
+        "advanced": {
+          "type": "integer"
+        },
+        "skillsUp": {
+          "type": "integer"
+        }
+      },
+      "required": ["advanced", "general", "skillsUp"],
+      "title": "Stats"
+    }
+  }
+}

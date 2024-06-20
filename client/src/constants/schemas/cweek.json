@@ -1,0 +1,421 @@
+{
+  "$ref": "#/definitions/CWeek",
+  "definitions": {
+    "CWeek": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlayerElement"
+          }
+        }
+      },
+      "required": ["players"],
+      "title": "CWeek"
+    },
+    "PlayerElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "player": {
+          "$ref": "#/definitions/PlayerPlayer"
+        },
+        "report": {
+          "$ref": "#/definitions/Report"
+        }
+      },
+      "required": ["id", "player", "report"],
+      "title": "PlayerElement"
+    },
+    "PlayerPlayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/Name"
+        },
+        "formation": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Country"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "number": {
+          "type": "null"
+        },
+        "team": {
+          "$ref": "#/definitions/Team"
+        },
+        "country": {
+          "$ref": "#/definitions/Country"
+        },
+        "value": {
+          "$ref": "#/definitions/Value"
+        },
+        "previousValue": {},
+        "wage": {
+          "$ref": "#/definitions/Value"
+        },
+        "characteristics": {
+          "$ref": "#/definitions/Characteristics"
+        },
+        "skills": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "stats": {
+          "$ref": "#/definitions/Stats"
+        },
+        "nationalStats": {
+          "$ref": "#/definitions/Stats"
+        },
+        "face": {
+          "$ref": "#/definitions/Face"
+        },
+        "youthTeamId": {
+          "type": "integer"
+        },
+        "injury": {
+          "$ref": "#/definitions/Injury"
+        },
+        "nationalSharing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "characteristics",
+        "country",
+        "face",
+        "formation",
+        "injury",
+        "name",
+        "nationalSharing",
+        "nationalStats",
+        "number",
+        "previousValue",
+        "skills",
+        "stats",
+        "team",
+        "value",
+        "wage",
+        "youthTeamId"
+      ],
+      "title": "PlayerPlayer"
+    },
+    "Characteristics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "bmi": {
+          "type": "number"
+        }
+      },
+      "required": ["age", "bmi", "height", "weight"],
+      "title": "Characteristics"
+    },
+    "Face": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "face": {
+          "type": "integer"
+        },
+        "skinColor": {
+          "type": "integer"
+        },
+        "hairColor": {
+          "type": "integer"
+        },
+        "hair": {
+          "type": "integer"
+        },
+        "eyes": {
+          "type": "integer"
+        },
+        "nose": {
+          "type": "integer"
+        },
+        "beard": {
+          "type": "integer"
+        },
+        "beardColor": {
+          "type": "integer"
+        },
+        "shirt": {
+          "type": "integer"
+        },
+        "mouth": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "beard",
+        "beardColor",
+        "eyes",
+        "face",
+        "hair",
+        "hairColor",
+        "mouth",
+        "nose",
+        "shirt",
+        "skinColor"
+      ],
+      "title": "Face"
+    },
+    "Country": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["code", "name"],
+      "title": "Country"
+    },
+    "Injury": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "daysRemaining": {
+          "type": "integer"
+        },
+        "severe": {
+          "type": "boolean"
+        }
+      },
+      "required": ["daysRemaining", "severe"],
+      "title": "Injury"
+    },
+    "Name": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "full": {
+          "type": "string"
+        }
+      },
+      "required": ["full", "name", "surname"],
+      "title": "Name"
+    },
+    "Stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cards": {
+          "$ref": "#/definitions/Cards"
+        },
+        "goals": {
+          "type": "integer"
+        },
+        "assists": {
+          "type": "integer"
+        },
+        "matches": {
+          "type": "integer"
+        }
+      },
+      "required": ["assists", "cards", "goals", "matches"],
+      "title": "Stats"
+    },
+    "Cards": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cards": {
+          "type": "integer"
+        },
+        "yellow": {
+          "type": "integer"
+        },
+        "red": {
+          "type": "integer"
+        }
+      },
+      "required": ["cards", "red", "yellow"],
+      "title": "Cards"
+    },
+    "Team": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        }
+      },
+      "required": ["id"],
+      "title": "Team"
+    },
+    "Value": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "integer"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency"
+        }
+      },
+      "required": ["currency", "value"],
+      "title": "Value"
+    },
+    "Report": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "week": {
+          "type": "integer"
+        },
+        "day": {
+          "$ref": "#/definitions/Day"
+        },
+        "skills": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "skillsChange": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/Country"
+        },
+        "kind": {
+          "$ref": "#/definitions/Country"
+        },
+        "playerValue": {
+          "$ref": "#/definitions/Value"
+        },
+        "games": {
+          "$ref": "#/definitions/Games"
+        },
+        "intensity": {
+          "type": "integer"
+        },
+        "formation": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Country"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "injury": {
+          "$ref": "#/definitions/Injury"
+        }
+      },
+      "required": [
+        "day",
+        "formation",
+        "games",
+        "injury",
+        "intensity",
+        "kind",
+        "playerValue",
+        "skills",
+        "skillsChange",
+        "type",
+        "week"
+      ],
+      "title": "Report"
+    },
+    "Day": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "season": {
+          "type": "integer"
+        },
+        "week": {
+          "type": "integer"
+        },
+        "seasonWeek": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "integer"
+        },
+        "date": {
+          "$ref": "#/definitions/Date"
+        }
+      },
+      "required": ["date", "day", "season", "seasonWeek", "week"],
+      "title": "Day"
+    },
+    "Date": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date"
+        },
+        "timestamp": {
+          "type": "integer"
+        }
+      },
+      "required": ["timestamp", "value"],
+      "title": "Date"
+    },
+    "Games": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minutesOfficial": {
+          "type": "integer"
+        },
+        "minutesFriendly": {
+          "type": "integer"
+        },
+        "minutesNational": {
+          "type": "integer"
+        }
+      },
+      "required": ["minutesFriendly", "minutesNational", "minutesOfficial"],
+      "title": "Games"
+    },
+    "Currency": {
+      "type": "string",
+      "title": "Currency"
+    }
+  }
+}

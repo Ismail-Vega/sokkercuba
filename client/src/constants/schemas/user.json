@@ -1,0 +1,280 @@
+{
+  "$ref": "#/definitions/User",
+  "definitions": {
+    "User": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/Team"
+        },
+        "budget": {
+          "$ref": "#/definitions/Budget"
+        },
+        "roles": {
+          "type": "array",
+          "items": {}
+        },
+        "plus": {
+          "type": "boolean"
+        },
+        "hasTrialPlus": {
+          "type": "boolean"
+        },
+        "plusDeadline": {},
+        "today": {
+          "$ref": "#/definitions/Today"
+        },
+        "dateTime": {
+          "$ref": "#/definitions/DateTime"
+        },
+        "enabledFeatures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sl": {
+          "type": "string"
+        },
+        "nationalTeamId": {
+          "type": "integer"
+        },
+        "nationalTeam": {},
+        "firstLogin": {
+          "type": "boolean"
+        },
+        "lock": {
+          "$ref": "#/definitions/Lock"
+        },
+        "settings": {
+          "$ref": "#/definitions/Settings"
+        }
+      },
+      "required": [
+        "budget",
+        "dateTime",
+        "enabledFeatures",
+        "firstLogin",
+        "hasTrialPlus",
+        "id",
+        "lock",
+        "name",
+        "nationalTeam",
+        "nationalTeamId",
+        "plus",
+        "plusDeadline",
+        "roles",
+        "settings",
+        "sl",
+        "team",
+        "today"
+      ],
+      "title": "User"
+    },
+    "Budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "integer"
+        },
+        "currency": {
+          "type": "string"
+        }
+      },
+      "required": ["currency", "value"],
+      "title": "Budget"
+    },
+    "DateTime": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone_type": {
+          "type": "integer"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      },
+      "required": ["date", "timezone", "timezone_type"],
+      "title": "DateTime"
+    },
+    "Lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "transfersLocked": {
+          "type": "boolean"
+        },
+        "readOnlyMode": {
+          "type": "boolean"
+        }
+      },
+      "required": ["readOnlyMode", "transfersLocked"],
+      "title": "Lock"
+    },
+    "Settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locale": {
+          "type": "string"
+        },
+        "theme": {
+          "type": "string"
+        }
+      },
+      "required": ["locale", "theme"],
+      "title": "Settings"
+    },
+    "Team": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "number"
+        },
+        "emblem": {
+          "type": "string"
+        },
+        "country": {
+          "$ref": "#/definitions/Country"
+        },
+        "colors": {
+          "$ref": "#/definitions/Colors"
+        },
+        "nationalType": {
+          "type": "integer"
+        },
+        "bankrupt": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "bankrupt",
+        "colors",
+        "country",
+        "emblem",
+        "id",
+        "name",
+        "nationalType",
+        "rank"
+      ],
+      "title": "Team"
+    },
+    "Colors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "first": {
+          "$ref": "#/definitions/First"
+        },
+        "second": {
+          "$ref": "#/definitions/First"
+        },
+        "keeper": {
+          "$ref": "#/definitions/First"
+        }
+      },
+      "required": ["first", "keeper", "second"],
+      "title": "Colors"
+    },
+    "First": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shirt": {
+          "$ref": "#/definitions/Shirt"
+        },
+        "trousers": {
+          "$ref": "#/definitions/Shirt"
+        },
+        "type": {
+          "$ref": "#/definitions/Country"
+        }
+      },
+      "required": ["shirt", "trousers", "type"],
+      "title": "First"
+    },
+    "Shirt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hex": {
+          "type": "string"
+        }
+      },
+      "required": ["hex"],
+      "title": "Shirt"
+    },
+    "Country": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["code", "name"],
+      "title": "Country"
+    },
+    "Today": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "season": {
+          "type": "integer"
+        },
+        "week": {
+          "type": "integer"
+        },
+        "seasonWeek": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "integer"
+        },
+        "date": {
+          "$ref": "#/definitions/Date"
+        }
+      },
+      "required": ["date", "day", "season", "seasonWeek", "week"],
+      "title": "Today"
+    },
+    "Date": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date"
+        },
+        "timestamp": {
+          "type": "integer"
+        }
+      },
+      "required": ["timestamp", "value"],
+      "title": "Date"
+    }
+  }
+}
