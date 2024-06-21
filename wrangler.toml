@@ -110,6 +110,3 @@ database_id = "147e8251-5a22-4941-b40d-18d62fade2fa"
 [triggers]
 # Run cleanup function daily at 2 AM UTC
 crons = ["0 2 * * *"]
-
-[site]
-bucket = "./public"

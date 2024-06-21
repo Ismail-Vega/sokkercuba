@@ -81,7 +81,7 @@ export default defineConfig({
   build: {
     manifest: true,
     minify: 'terser',
-    outDir: '../public'
+    outDir: './dist'
   },
   server: {
     proxy: { '/api': 'http://localhost:8787' }
