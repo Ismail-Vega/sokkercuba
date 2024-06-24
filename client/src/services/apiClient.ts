@@ -33,6 +33,7 @@ const axiosAdapter = async (config: any) => {
 
 // Create an Axios instance
 const axiosInstance = axios.create({
+  baseURL: "http://localhost",
   headers: {
     Accept: TYPE,
     [CONTENT_TYPE]: TYPE,

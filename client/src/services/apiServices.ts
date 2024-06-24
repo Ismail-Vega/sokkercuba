@@ -39,13 +39,12 @@ export const handleApiRequest = ({
       }
     })
     .catch((error) => {
-      const { data, status } = error?.response || null;
-
+      console.log("error: ", error);
       if (!silent) {
         setError(dispatch, true);
-        setErrorMsg(dispatch, data?.error || error?.message);
+        setErrorMsg(dispatch, error?.message || error.toString());
       }
-      return { ...data, status };
+      return { error };
     })
     .finally(function () {
       if (!silent) setLoading(dispatch, false);
