@@ -23,6 +23,9 @@ const axiosAdapter = async (config: any) => {
   };
 
   return new Promise<AxiosResponse>((resolve, reject) => {
+    console.log("import.meta.env: ", import.meta.env);
+    console.log("import.meta.env.API: ", import.meta.env.API);
+
     import.meta.env.API.fetch(url, requestInit)
       .then((response: Response) => {
         console.log("response check: ", response);
