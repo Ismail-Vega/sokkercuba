@@ -5,14 +5,40 @@ import { getNewAccessToken } from "./authService";
 const TYPE = "application/json";
 const CONTENT_TYPE = "Content-Type";
 
+const axiosAdapter = async (config: any) => {
+  const { method, url, data, headers } = config;
+
+  const requestInit: RequestInit = {
+    method,
+    headers: {
+      ...headers,
+      [CONTENT_TYPE]: TYPE,
+    },
+    body: data ? JSON.stringify(data) : undefined,
+  };
+
+  const response = await import.meta.env.API.fetch(url, requestInit);
+  console.log('response: ', response);
+
+  const responseData = await response.json();
+  console.log("responseData: ", responseData);
+
+  return {
+    data: responseData,
+    status: response.status,
+    statusText: response.statusText,
+    ...response,
+  };
+};
+
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8787",
   headers: {
     Accept: TYPE,
     [CONTENT_TYPE]: TYPE,
   },
   withCredentials: true,
+  adapter: axiosAdapter,
 });
 
 // Add a response interceptor
