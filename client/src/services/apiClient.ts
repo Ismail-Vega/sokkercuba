@@ -1,37 +1,61 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { getNewAccessToken } from "./authService";
 
 const TYPE = "application/json";
 const CONTENT_TYPE = "Content-Type";
 
 const axiosAdapter = async (config: any) => {
-  const { method, url, data, headers } = config;
+  const { method, url, data, headers: reqHeaders } = config;
+
+  const headers = new Headers(
+    {
+      ...reqHeaders,
+      [CONTENT_TYPE]: TYPE,
+    } || {}
+  );
 
   const requestInit: RequestInit = {
-    method,
-    headers: {
-      ...headers,
-      [CONTENT_TYPE]: TYPE,
-    },
-    body: data ? JSON.stringify(data) : undefined,
+    method: method.toLowerCase(),
+    headers,
+    body: data,
+    credentials: "include",
   };
 
-  const response = await import.meta.env.API.fetch(url, requestInit);
-  console.log("response: ", response);
+  return new Promise<AxiosResponse>((resolve, reject) => {
+    import.meta.env.API.fetch(url, requestInit)
+      .then((response: Response) => {
+        console.log("response check: ", response);
 
-  const responseData = await response.json();
-  console.log("responseData: ", responseData);
+        const axiosResponse: AxiosResponse = {
+          data: null,
+          status: response.status,
+          statusText: response.statusText,
+          headers: {} as any,
+          config,
+        };
 
-  return {
-    data: responseData,
-    ...response,
-  };
+        response.headers.forEach((value, key) => {
+          axiosResponse.headers[key] = value;
+        });
+
+        response
+          .json()
+          .then((data) => {
+            axiosResponse.data = data;
+            resolve(axiosResponse);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      })
+      .catch((error: any) => {
+        reject(error);
+      });
+  });
 };
 
-// Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: "http://localhost",
   headers: {
     Accept: TYPE,
     [CONTENT_TYPE]: TYPE,
@@ -40,13 +64,12 @@ const axiosInstance = axios.create({
   adapter: axiosAdapter,
 });
 
-// Add a response interceptor
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error.config;
+    const originalRequest = error?.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error?.response?.status === 401 && !originalRequest?._retry) {
       originalRequest._retry = true;
       try {
         const newAccessToken = await getNewAccessToken();
