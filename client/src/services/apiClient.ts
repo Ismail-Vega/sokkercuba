@@ -18,15 +18,13 @@ const axiosAdapter = async (config: any) => {
   };
 
   const response = await import.meta.env.API.fetch(url, requestInit);
-  console.log('response: ', response);
+  console.log("response: ", response);
 
   const responseData = await response.json();
   console.log("responseData: ", responseData);
 
   return {
     data: responseData,
-    status: response.status,
-    statusText: response.statusText,
     ...response,
   };
 };
