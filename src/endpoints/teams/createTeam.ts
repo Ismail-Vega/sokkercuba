@@ -11,9 +11,7 @@ export class PostTeamData extends OpenAPIRoute {
   static schema: OpenAPIRouteSchema = {
     tags: ["Teams"],
     summary: "Insert Team data",
-    requestBody: {
-      data: z.record(z.string(), z.any()),
-    },
+    requestBody: z.record(z.string(), z.any()),
     responses: {
       "200": {
         description: "Returns success",
@@ -40,9 +38,9 @@ export class PostTeamData extends OpenAPIRoute {
   ) {
     const { body } = data;
     const userSession = env.userSession;
-    const teamId = body?.data?.team?.id;
+    const teamId = body?.team?.id;
 
-    if (!body?.data || !teamId) {
+    if (!body || !teamId) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -66,7 +64,7 @@ export class PostTeamData extends OpenAPIRoute {
           data: {
             id: teamId,
             user_id: userSession.user_id as number,
-            metadata: JSON.stringify(body.data),
+            metadata: JSON.stringify(body),
           },
         })
         .execute();

@@ -97,8 +97,7 @@
       "additionalProperties": false,
       "properties": {
         "date": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "timezone_type": {
           "type": "integer"

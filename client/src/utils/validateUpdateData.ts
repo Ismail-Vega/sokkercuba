@@ -8,7 +8,6 @@ export const validateUpdateData = (rawData: any, type: string) => {
     try {
       const parsedData = JSON.parse(rawData);
       const valid = validate(parsedData);
-      console.log("valid: ", valid);
 
       if (!valid) {
         console.log("validation errors: ", validate.errors);

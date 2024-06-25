@@ -65,7 +65,6 @@ export default function SignIn() {
     };
 
     const response = await handleApiRequest(options);
-    console.log("response: ", response);
 
     const { success, teamId, accessToken, status } = response;
     if (status !== 200 || !success) return;

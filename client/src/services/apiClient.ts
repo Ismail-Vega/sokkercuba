@@ -1,79 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { getNewAccessToken } from "./authService";
 
 const TYPE = "application/json";
 const CONTENT_TYPE = "Content-Type";
 
-const axiosAdapter = async (config: any) => {
-  const { method, url, data, headers: reqHeaders } = config;
-
-  const headers = new Headers(
-    {
-      ...reqHeaders,
-      [CONTENT_TYPE]: TYPE,
-    } || {}
-  );
-
-  const requestInit: RequestInit = {
-    method: method.toLowerCase(),
-    headers,
-    body: data,
-    credentials: "include",
-  };
-
-  return new Promise<AxiosResponse>((resolve, reject) => {
-    const tempEnv = import.meta.env
-    console.log("import.meta.env: ", tempEnv);
-    console.log("import.meta.env.API: ", tempEnv?.API);
-
-    import.meta.env.API.fetch(url, requestInit)
-      .then((response: Response) => {
-        console.log("response check: ", response);
-
-        const axiosResponse: AxiosResponse = {
-          data: null,
-          status: response.status,
-          statusText: response.statusText,
-          headers: {} as any,
-          config,
-        };
-
-        response.headers.forEach((value, key) => {
-          axiosResponse.headers[key] = value;
-        });
-
-        response
-          .json()
-          .then((data) => {
-            axiosResponse.data = data;
-            resolve(axiosResponse);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      })
-      .catch((error: any) => {
-        reject(error);
-      });
-  });
+const baseHeaders = {
+  Accept: TYPE,
+  [CONTENT_TYPE]: TYPE,
 };
 
 const axiosInstance = axios.create({
-  headers: {
-    Accept: TYPE,
-    [CONTENT_TYPE]: TYPE,
-  },
   withCredentials: true,
-  adapter: axiosAdapter,
 });
 
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error?.config;
+    const originalRequest = error.config;
 
-    if (error?.response?.status === 401 && !originalRequest?._retry) {
+    if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
         const newAccessToken = await getNewAccessToken();
@@ -98,7 +44,7 @@ const apiClient = (method: string, query: string, data?: any, headers?: any) =>
     method,
     url: query,
     data,
-    headers: { ...headers },
+    headers: { ...baseHeaders, ...headers },
   });
 
 export default apiClient;

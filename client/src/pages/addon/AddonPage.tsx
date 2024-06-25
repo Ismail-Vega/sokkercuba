@@ -1,23 +1,23 @@
-import Card from '@mui/material/Card'
-import Link from '@mui/material/Link'
-import Button from '@mui/material/Button'
-import { Box, SvgIcon } from '@mui/material'
-import CardMedia from '@mui/material/CardMedia'
-import Typography from '@mui/material/Typography'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import { ScrollToTopOnMount } from '../../components'
-import { ReactComponent as ChromeIcon } from './chrome_icon.svg'
-import { ReactComponent as FirefoxIcon } from './firefox-browser-icon.svg'
+import Card from "@mui/material/Card";
+import Link from "@mui/material/Link";
+import Button from "@mui/material/Button";
+import { Box, SvgIcon } from "@mui/material";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import { ScrollToTopOnMount } from "../../components";
+import ChromeIcon from "./chrome_icon.svg?react";
+import FirefoxIcon from "./firefox-browser-icon.svg?react";
 
 const AddonPage = () => {
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <ScrollToTopOnMount />
 
-      <Card sx={{ maxWidth: '512px' }}>
+      <Card sx={{ maxWidth: "512px" }}>
         <CardMedia
           sx={{ height: 512 }}
           image="addon-logo.png"
@@ -63,7 +63,7 @@ const AddonPage = () => {
         </CardActions>
       </Card>
     </Box>
-  )
-}
+  );
+};
 
-export default AddonPage
+export default AddonPage;
