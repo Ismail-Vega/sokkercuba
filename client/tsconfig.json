@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -21,9 +17,8 @@
     "jsx": "react-jsx",
     "types": ["vite-plugin-svgr/client"]
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
+  "exclude": ["public/functions/**/*"],
   "references": [
     {
       "path": "./tsconfig.node.json"
