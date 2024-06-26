@@ -18,7 +18,6 @@
     "types": ["vite-plugin-svgr/client", "vite-plugin-pwa/client"]
   },
   "include": ["src"],
-  "exclude": ["public/functions/**/*"],
   "references": [
     {
       "path": "./tsconfig.node.json"
