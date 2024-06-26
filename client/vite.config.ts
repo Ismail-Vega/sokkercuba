@@ -96,13 +96,6 @@ export default defineConfig({
     manifest: true,
     minify: "terser",
     outDir: "./dist",
-    rollupOptions: {
-      output: {
-        chunkFileNames: "assets/[name]-[hash].js",
-        entryFileNames: "assets/[name]-[hash].js",
-        assetFileNames: "assets/[name]-[hash].[ext]",
-      },
-    },
   },
   server: {
     proxy: { "/api": "http://localhost:8787" },
