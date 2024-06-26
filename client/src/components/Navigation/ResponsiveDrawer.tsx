@@ -171,7 +171,7 @@ export function ResponsiveDrawer(props: Props) {
             <MaterialUISwitch
               sx={{ m: 1 }}
               size="small"
-              onChange={(evt) =>
+              onChange={(evt: { target: { checked: any } }) =>
                 setSelectedTheme(evt.target.checked ? "light" : "dark")
               }
             />
