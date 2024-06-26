@@ -25,20 +25,6 @@ export default defineConfig({
         scope: "/",
         lang: "en",
         start_url: "/",
-        screenshots: [
-          {
-            src: "/icons/icon-284x284.png",
-            sizes: "284x284",
-            type: "image/png",
-            form_factor: "narrow",
-          },
-          {
-            src: "/icons/icon-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            form_factor: "wide",
-          },
-        ],
         icons: [
           {
             src: "/icons/icon-72x72.png",
