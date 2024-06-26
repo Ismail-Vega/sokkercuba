@@ -2,6 +2,7 @@ import svgr from "vite-plugin-svgr";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import viteCompression from "vite-plugin-compression";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 
 export default defineConfig({
@@ -11,6 +12,9 @@ export default defineConfig({
       babel: {
         babelrc: true,
       },
+    }),
+    viteStaticCopy({
+      targets: [{ src: "functions", dest: "./" }],
     }),
     viteCompression(),
     splitVendorChunkPlugin(),
@@ -27,8 +31,8 @@ export default defineConfig({
         start_url: "/",
         screenshots: [
           {
-            src: "/icons/icon-284x284.png",
-            sizes: "284x284",
+            src: "/icons/icon-512x512.png",
+            sizes: "512x512",
             type: "image/png",
             form_factor: "narrow",
           },
@@ -62,7 +66,7 @@ export default defineConfig({
             src: "/icons/icon-144x144.png",
             sizes: "144x144",
             type: "image/png",
-            purpose: "maskable",
+            purpose: "any",
           },
           {
             src: "/icons/icon-152x152.png",
