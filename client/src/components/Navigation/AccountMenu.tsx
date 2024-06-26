@@ -47,10 +47,7 @@ export default function AccountMenu() {
 
     const response = await handleApiRequest(options);
 
-    const {
-      data: { error, success },
-      status,
-    } = response;
+    const { error, success, status } = response;
 
     if ((error && !success) || status !== 200)
       return setErrorMsg(dispatch, error || "Error trying to logout.");

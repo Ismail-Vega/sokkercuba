@@ -18,7 +18,7 @@
     "name": "vendor"
   },
   "index.html": {
-    "file": "assets/index-DQ7WhwzY.js",
+    "file": "assets/index-D6KC9-Yn.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
@@ -43,7 +43,7 @@
     ]
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-Dnanwe8B.js",
+    "file": "assets/index-CrS9wMBB.js",
     "name": "index",
     "src": "src/components/SignIn/index.ts",
     "isDynamicEntry": true,
@@ -53,7 +53,7 @@
     ]
   },
   "src/components/SignUp/index.ts": {
-    "file": "assets/index-BkOlxAQg.js",
+    "file": "assets/index-u4gXRU3P.js",
     "name": "index",
     "src": "src/components/SignUp/index.ts",
     "isDynamicEntry": true,
@@ -76,7 +76,7 @@
     ]
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-B4wbxVWe.js",
+    "file": "assets/AboutPage-CL9RXOiI.js",
     "name": "AboutPage",
     "src": "src/pages/about/AboutPage.tsx",
     "isDynamicEntry": true,
@@ -87,7 +87,7 @@
     ]
   },
   "src/pages/addon/AddonPage.tsx": {
-    "file": "assets/AddonPage-621YGYUg.js",
+    "file": "assets/AddonPage-Ug_gXycI.js",
     "name": "AddonPage",
     "src": "src/pages/addon/AddonPage.tsx",
     "isDynamicEntry": true,
@@ -107,7 +107,7 @@
     ]
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-ChoUWWBs.js",
+    "file": "assets/ContactPage-BOC3aPMN.js",
     "name": "ContactPage",
     "src": "src/pages/contact/ContactPage.tsx",
     "isDynamicEntry": true,
@@ -118,7 +118,7 @@
     ]
   },
   "src/pages/team/TeamPage.tsx": {
-    "file": "assets/TeamPage-CjHpZ7uP.js",
+    "file": "assets/TeamPage-D79yHXwe.js",
     "name": "TeamPage",
     "src": "src/pages/team/TeamPage.tsx",
     "isDynamicEntry": true,
@@ -129,7 +129,7 @@
     ]
   },
   "src/pages/training/TrainingPage.tsx": {
-    "file": "assets/TrainingPage-Cquo4CDQ.js",
+    "file": "assets/TrainingPage-DOF-v_VE.js",
     "name": "TrainingPage",
     "src": "src/pages/training/TrainingPage.tsx",
     "isDynamicEntry": true,
@@ -140,7 +140,7 @@
     ]
   },
   "src/pages/update/UpdatePage.tsx": {
-    "file": "assets/UpdatePage-CgDZoIhJ.js",
+    "file": "assets/UpdatePage-DqOUXkXk.js",
     "name": "UpdatePage",
     "src": "src/pages/update/UpdatePage.tsx",
     "isDynamicEntry": true,
@@ -150,7 +150,7 @@
     ]
   },
   "src/pages/xtreme/XtremePage.tsx": {
-    "file": "assets/XtremePage-U1HDl8PQ.js",
+    "file": "assets/XtremePage-DEXkxVxp.js",
     "name": "XtremePage",
     "src": "src/pages/xtreme/XtremePage.tsx",
     "isDynamicEntry": true,

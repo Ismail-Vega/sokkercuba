@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-ClnM7L9C.js";import"./index-DQ7WhwzY.js";import{S as r}from"./ScrollToTopOnMount-YbRgBmSJ.js";const s=()=>o.jsxs(o.Fragment,{children:[o.jsx(r,{}),o.jsx("div",{children:"Hello about"})]});export{s as default};
