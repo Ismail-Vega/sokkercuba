@@ -81,8 +81,7 @@ export function Footer() {
         <Divider sx={{ m: '16px' }} />
         <Container maxWidth="sm">
           <Typography variant="body1">
-            La vieja escuela del Sokker Cubano! Dudas, Consultas, pregunte sin
-            pena! Si desea añadir a alguien pase el link del grupo.
+          The Cuban Sokker community!
           </Typography>
           <Copyright />
         </Container>

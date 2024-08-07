@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS training_reports;
 CREATE TABLE
     users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email TEXT NOT NULL UNIQUE,
+        login TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL,
         team_id INTEGER,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

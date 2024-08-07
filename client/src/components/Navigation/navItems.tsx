@@ -10,6 +10,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
 import PersonSearchIcon from '@mui/icons-material/PersonSearch'
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement'
+import PolicyIcon from '@mui/icons-material/Policy';
 
 interface NavBarItemProps {
   path: string
@@ -65,6 +66,11 @@ export const footerItems = [
     path: 'addon',
     value: 'Addon',
     icon: <ExtensionIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+  },
+  {
+    path: 'privacy',
+    value: 'Privacy',
+    icon: <PolicyIcon sx={{ mr: 0.5 }} fontSize="inherit" />
   }
 ]
 

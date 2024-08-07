@@ -73,7 +73,7 @@ router.get("/api/v1/teams/:id/reports/", GetTeamReports);
 router.post("/api/v1/teams/:id/squad/", PostSquadData);
 router.get("/api/v1/teams/:id/squad/", GetSquadData);
 
-/* ## PLAYERS ## */
+/* ## TRAINING ## */
 router.post("/api/v1/players/:id/reports", PostPlayerReports);
 router.get("/api/v1/players/:id/reports", GetPlayerReports);
 

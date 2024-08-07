@@ -1,9 +1,9 @@
 export const updateTypes = {
   all: 'All',
-  user: 'User',
-  players: 'Players',
-  juniors: 'Juniors',
+  team: 'Team',
+  squad: 'Squad',
+  // juniors: 'Juniors',
   cweek: 'Current Week',
-  tsummary: 'Training Summary',
-  training: 'Team Training History'
+  // tsummary: 'Training Summary',
+  // training: 'Team Training History'
 }

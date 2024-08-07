@@ -1,37 +1,38 @@
-import { Box, PaletteMode } from '@mui/material/'
-import { lazy, ReactNode, Suspense } from 'react'
-import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
+import { Box, PaletteMode } from "@mui/material/";
+import { lazy, ReactNode, Suspense } from "react";
+import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 
-import { HomePage } from '../pages'
-import { Footer } from '../components'
-import PrivateRoute from './PrivateRoute'
-import Toolbar from '@mui/material/Toolbar'
-import AppFallback from '../components/AppFallback'
-import { ResponsiveDrawer } from '../components/Navigation'
+import { HomePage } from "../pages";
+import { Footer } from "../components";
+import PrivateRoute from "./PrivateRoute";
+import Toolbar from "@mui/material/Toolbar";
+import AppFallback from "../components/AppFallback";
+import { ResponsiveDrawer } from "../components/Navigation";
 
-const SignIn = lazy(() => import('../components/SignIn'))
-const SignUp = lazy(() => import('../components/SignUp'))
-const TeamPage = lazy(() => import('../pages/team/TeamPage'))
-const AboutPage = lazy(() => import('../pages/about/AboutPage'))
-const UpdatePage = lazy(() => import('../pages/update/UpdatePage'))
-const ContactPage = lazy(() => import('../pages/contact/ContactPage'))
-const NotFoundPage = lazy(() => import('../pages/404/NotFoundPage'))
-const AddonPage = lazy(() => import('../pages/addon/AddonPage'))
-const AddonPrivacyPage = lazy(() => import('../pages/addon/AddonPrivacy'))
-const XtremePage = lazy(() => import('../pages/xtreme/XtremePage'))
-const TrainingPage = lazy(() => import('../pages/training/TrainingPage'))
+const SignIn = lazy(() => import("../components/SignIn"));
+const SignUp = lazy(() => import("../components/SignUp"));
+const TeamPage = lazy(() => import("../pages/team/TeamPage"));
+const AboutPage = lazy(() => import("../pages/about/AboutPage"));
+const UpdatePage = lazy(() => import("../pages/update/UpdatePage"));
+const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
+const NotFoundPage = lazy(() => import("../pages/404/NotFoundPage"));
+const AddonPage = lazy(() => import("../pages/addon/AddonPage"));
+const AddonPrivacyPage = lazy(() => import("../pages/addon/AddonPrivacy"));
+const XtremePage = lazy(() => import("../pages/xtreme/XtremePage"));
+const TrainingPage = lazy(() => import("../pages/training/TrainingPage"));
+const AppPrivacy = lazy(() => import("../pages/privacy/AppPrivacy"));
 
 interface SuspenseProps {
-  children: ReactNode
+  children: ReactNode;
 }
 const SuspenseWrapper = ({ children }: SuspenseProps) => (
   <Suspense fallback={<AppFallback />}>{children}</Suspense>
-)
+);
 
 export const AppRouter = ({
-  setSelectedTheme
+  setSelectedTheme,
 }: {
-  setSelectedTheme: (theme: PaletteMode) => void
+  setSelectedTheme: (theme: PaletteMode) => void;
 }) => (
   <BrowserRouter>
     <ResponsiveDrawer setSelectedTheme={setSelectedTheme}>
@@ -39,8 +40,8 @@ export const AppRouter = ({
       <Box
         sx={{
           p: 3,
-          display: 'flex',
-          flexDirection: 'column'
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Routes>
@@ -85,6 +86,15 @@ export const AppRouter = ({
             element={
               <SuspenseWrapper>
                 <AddonPrivacyPage />
+              </SuspenseWrapper>
+            }
+          />
+
+          <Route
+            path="/privacy"
+            element={
+              <SuspenseWrapper>
+                <AppPrivacy />
               </SuspenseWrapper>
             }
           />
@@ -155,4 +165,4 @@ export const AppRouter = ({
       <Footer />
     </ResponsiveDrawer>
   </BrowserRouter>
-)
+);

@@ -9,17 +9,17 @@ import TextField from "@mui/material/TextField";
 import SaveIcon from "@mui/icons-material/Save";
 import Container from "@mui/material/Container";
 import InputLabel from "@mui/material/InputLabel";
-import { ApiRequestOptions, handleApiRequest } from "../../services";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import { AppContext } from "../../store/StoreProvider";
 import { updateTypes } from "../../constants/updateTypes";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { validateUpdateData } from "../../utils/validateUpdateData";
+import { ApiRequestOptions, handleApiRequest } from "../../services";
 
 export default function UpdatePage() {
   const { state, dispatch } = useContext(AppContext);
-  const { username } = state;
+  const { teamId, username } = state;
   const [value, setValue] = useState("");
   const [updateType, setUpdateType] = useState("all");
 
@@ -40,12 +40,29 @@ export default function UpdatePage() {
 
     if (validData) {
       const body = isAll ? validData : { [updateType]: validData };
+
       const options: ApiRequestOptions = {
         query: `/api/v1/users/${username}`,
-        method: "PATCH",
+        method: "POST",
         dispatch,
-        body,
+        body: {},
       };
+
+      if (isAll) {
+        const { cweek, user, players } = validData;
+
+        const userPromise = handleApiRequest({
+          ...options,
+          method: "PATCH",
+          query: `/api/v1/teams/${teamId ?? user?.team?.id}`,
+        });
+
+        const cweekPromise = handleApiRequest({
+          ...options,
+          query: `/api/v1/players/:id/reports`,
+        });
+        const playersPromise = handleApiRequest({ ...options });
+      }
 
       const result = await handleApiRequest(options);
 

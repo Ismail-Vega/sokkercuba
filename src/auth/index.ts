@@ -1,4 +1,4 @@
-import { Email, OpenAPIRoute } from "@cloudflare/itty-router-openapi";
+import { OpenAPIRoute } from "@cloudflare/itty-router-openapi";
 import { z } from "zod";
 import { Env } from "../types/env";
 import { Context } from "../interfaces/context";
@@ -16,8 +16,8 @@ export class AuthRegister extends OpenAPIRoute {
     tags: ["Auth"],
     summary: "Register user",
     requestBody: {
-      email: new Email(),
-      password: z.string().min(8).max(24),
+      login: z.string(),
+      password: z.string(),
     },
     responses: {
       "200": {
@@ -26,7 +26,7 @@ export class AuthRegister extends OpenAPIRoute {
           success: Boolean,
           result: {
             user: {
-              email: String,
+              login: String,
             },
           },
         },
@@ -54,7 +54,7 @@ export class AuthRegister extends OpenAPIRoute {
         .insert({
           tableName: "users",
           data: {
-            email: data.body.email,
+            login: data.body.login,
             password: await hashPassword(data.body.password, env.SALT_TOKEN),
           },
           returning: "*",
@@ -64,7 +64,7 @@ export class AuthRegister extends OpenAPIRoute {
       return new Response(
         JSON.stringify({
           success: false,
-          error: `User with that email already exists. ${
+          error: `User with that username already exists. ${
             e?.message || e ? "Info: " + (e?.message || e) : ""
           }`,
         }),
@@ -81,7 +81,7 @@ export class AuthRegister extends OpenAPIRoute {
       success: true,
       result: {
         user: {
-          email: user.results.email,
+          login: user.results.login,
         },
       },
     };
@@ -93,8 +93,8 @@ export class AuthLogin extends OpenAPIRoute {
     tags: ["Auth"],
     summary: "Login user",
     requestBody: {
-      email: new Email(),
-      password: z.string().min(8).max(24),
+      login: z.string(),
+      password: z.string(),
     },
     responses: {
       "200": {
@@ -127,9 +127,9 @@ export class AuthLogin extends OpenAPIRoute {
         tableName: "users",
         fields: "*",
         where: {
-          conditions: ["email = ?1", "password = ?2"],
+          conditions: ["login = ?1", "password = ?2"],
           params: [
-            data.body.email,
+            data.body.login,
             await hashPassword(data.body.password, env.SALT_TOKEN),
           ],
         },

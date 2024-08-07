@@ -39,10 +39,11 @@ export const handleApiRequest = ({
       }
     })
     .catch((error) => {
-      console.log("error: ", error);
+      const { response } = error;
+
       if (!silent) {
         setError(dispatch, true);
-        setErrorMsg(dispatch, error?.message || error.toString());
+        setErrorMsg(dispatch, response?.data?.error || error?.message);
       }
       return { error };
     })

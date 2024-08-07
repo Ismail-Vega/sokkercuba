@@ -16,8 +16,8 @@ const ajv = new Ajv({
   allowUnionTypes: true
 })
 addFormats(ajv)
-ajv.addSchema(user, 'user')
-ajv.addSchema(players, 'players')
+ajv.addSchema(user, 'team')
+ajv.addSchema(players, 'squad')
 ajv.addSchema(juniors, 'juniors')
 ajv.addSchema(cweek, 'cweek')
 ajv.addSchema(tsummary, 'tsummary')
